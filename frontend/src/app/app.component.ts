@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './componentes/home/home.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent,],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [RouterOutlet],
+  template: `<router-outlet></router-outlet>`, //tira a necessidade do router-outlet no app.comp.html
+  styles: [],
 })
-export class AppComponent {
-  title = 'frontend';
-}
+export class AppComponent {}
 // vagas iel para pesquisador - vagas no site da IEL - estagio na ford - vagas na ford brasil lINKEDiN
-// GRUPOS DE PESQUISA E EXTE 
+// GRUPOS DE PESQUISA E EXTE
 // DIRETOR ACADEMICO DE CURSO

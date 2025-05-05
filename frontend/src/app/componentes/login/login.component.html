@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mb-2">
+      <img
+        src="/img/ranger.png"
+        class="img-fluid d-none d-sm-block"
+        alt="Imagem da Ford Ranger"
+      />
+    </div>
+
+    <div class="col-md-6 align-items-center bg-light p-4">
+
+      <div class="col-md-5">
+        <img class="img-fluid d-none d-sm-block" src="/img/ford.png" alt="">
+      </div>
+      <h4 class="text-center">Boas vindas!</h4>
+
+      <form class="form-mt-4" (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="input-usuario">Nome de usuário </label>
+          <input
+            class="form-control" id="input-usuario"
+            placeholder="Nome do usuário"
+            [(ngModel)]="usuario"
+            name="usuario"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password1">Senha</label>
+          <input
+            class="form-control"
+            type="password"
+            id="password1"
+            placeholder="Digite sua senha"
+            [(ngModel)]="senha"
+            name="senha"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
