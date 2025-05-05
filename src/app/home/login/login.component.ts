@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
-
   usuario = '';
   senha = '';
 
