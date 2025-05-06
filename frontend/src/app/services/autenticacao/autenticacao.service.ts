@@ -6,16 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AutenticacaoService {
+  private apiUrl = 'http://localhost:3000/user/login';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  // serviço de autenticação
-  autenticar(usuario: string, senha: string): Observable<any>{
-    // retorna o objetvo que estiver definido aqui dentro
-    return this.httpClient.post('http://localhost:3000/user/login', {
-    //  criação do método para usar no componente
+   // serviço de autenticação
+  autenticar(usuario: string, senha: string): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(this.apiUrl, {
+    
+      //  criação do método para usar no componente. BackEnd espera objetos que contenha esses atributos abaixo. Então, mapeamos usuario e senha
       userName: usuario,
-      password: senha,
-    })
+      password: senha
+    });
   }
 }
