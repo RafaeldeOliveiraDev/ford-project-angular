@@ -7,22 +7,22 @@ const app = express();
 app.use(cors({
     origin: '*', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.post('/login', (req, res) => {
     try {
-        const { username, password } = req.body
+        const { userName, password } = req.body
 
-        if (!username || !password) {
+        if (!userName || !password) {
             return res.status(400).json({
                 message: 'O campo de usuário ou senha não foi preenchido!'
             });
         }
 
-        if (username !== 'admin' || password !== '123456') {
+        if (userName !== 'admin' || password !== '123456') {
             return res.status(404).json({
                 message: 'O nome de usuário ou senha está incorreto ou não foi cadastrado!'
             });
@@ -32,7 +32,8 @@ app.post('/login', (req, res) => {
             id: 1,
             success: true,
             nome: 'admin',
-            email: 'admin@email.com'
+            email: 'admin@email.com',
+            token: 'token-falso-ou-real-aqui'
         });
 
     } catch (error) {

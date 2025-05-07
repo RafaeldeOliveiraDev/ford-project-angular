@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, Routes } from '@angular/router';
+import { Router } from '@angular/router';
 import { AutenticacaoService } from '../../services/autenticacao/autenticacao.service';
 
 @Component({
@@ -22,18 +22,28 @@ export class LoginComponent {
   ) {}
 
   login() {
-    if (!this.usuario || !this.senha) return;
+    // Checa se os campos estão preenchidos
+    if (!this.usuario || !this.senha) {
+      alert('Preencha o usuário e a senha');
+      return;
+    }
 
-    this.authService.autenticar(this.usuario, this.senha).subscribe(
-        ({ token }) => {
-          // salva o token e navega
-          localStorage.setItem('token', token);
-          this.router.navigate(['home']);
-        },
-        error => {
-          alert('Usuário ou senha inválidos');
-          console.error(error);
-        }
-      );
+    // Chama o serviço de autenticação
+    this.authService.autenticar(this.usuario, this.senha).subscribe({
+      next: (res) => {
+        // Salva o token no navegador
+        // localStorage.setItem('token', res.token);
+
+        // Redireciona pra página inicial
+        this.router.navigate(['home']);
+      },
+      error: (err) => {
+        // Mostra erro simples pro usuário
+        alert('Usuário ou senha inválidos');
+
+        // Loga erro no console pra facilitar debug
+        console.error('Erro no login:', err);
+      }
+    });
   }
 }
