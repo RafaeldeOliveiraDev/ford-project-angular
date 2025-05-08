@@ -1,19 +1,25 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, 
+  imports: [
+    CommonModule, 
     RouterLink, 
     RouterOutlet,
-    MatCardModule, 
-    MatButtonModule
+    
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {}
+export class HomeComponent {
+
+  constructor(private router: Router){}
+
+  logout(){
+    this.router.navigate(['/login'])
+  }
+}

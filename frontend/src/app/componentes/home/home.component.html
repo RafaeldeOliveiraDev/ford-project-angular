@@ -1,22 +1,27 @@
-<div class="home-container">
-  <mat-card class="welcome-card">
-      <mat-card-header>
-        <mat-card-title>Sistema de Cards da FORD</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p class="welcome-paragraph">Seja bem-vindo(a)!</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="warn" onclick="logout()">Logout</button>
-      </mat-card-actions>
-  </mat-card>
+<!-- SIDENAV - navegação -->
+<!-- <main class="main-container"> -->
+  <main class="main-container">
+    <div class="home-container ">
+       <div class="background-image">
+          <img class="img-fluid d-none d-sm-block" src="/img/ranger.png" alt="Imagem da camionete Ford Ranger">
+       </div>
+
+      <div class="overlay">
+          <div class="card">
+            <h3 class="card-title ">Sistemas de dados da FORD</h3>  
+            <div class="card p-4 shadow-lg">
+              <p class="card-text">Seja bem-vindo!</p>
+            </div>
+          </div>
+      </div>
 </div>
+</main>
+<!-- </main> -->
 
-
-<div class="mt-3" d-flex>
+<!-- <div class="mt-3" d-flex>
     <a routerLink="/" class="btn btn-primary">Ir para Login</a>
     <a routerLink="/dashboard" class="btn btn-link">Dashboard</a>
     <a routerLink="/" class="btn btn-sm btn-secondary">Logout</a>
-  </div>
+  </div> -->
 
 <router-outlet></router-outlet>
