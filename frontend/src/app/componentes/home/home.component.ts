@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { SidenavComponent } from '../sidenav/sidenav.component';
 
 
 @Component({
@@ -8,9 +9,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule, 
-    RouterLink, 
     RouterOutlet,
-    
+    SidenavComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

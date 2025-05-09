@@ -1,8 +1,15 @@
-<!-- Menu lateral -->
-<nav  class="sidebar">
-    <ul>
-      <li><a routerLink="/home" >Home</a></li>
-      <li><a routerLink="/dashboard" >Dashboard</a></li>
-      <li><a href="#">Logout</a></li>
-    </ul>
-  </nav>
+<!-- Bootstrap Navbar com botão hamburguer -->
+<nav class="navbar navbar-white fixed-top">
+  <button class="navbar-toggler" type="button" (click)="toggle()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+
+<!-- Sidebar lateral -->
+<nav class="custom-sidebar display-flex text-dark" [class.show]="isOpen">
+  <img class="img-fluid d-none d-sm-block" src="/img/ford.png" alt="">
+  <a class="nav-link" routerLink="/home" (click)="toggle()">Home</a>
+  <a class="nav-link" routerLink="/dashboard" (click)="toggle()">Dashboard</a>
+  <a class="nav-link" href="/login" (click)="logout()">Logout</a>
+  
+</nav>

@@ -7,10 +7,9 @@ import { SidenavComponent } from './componentes/sidenav/sidenav.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SidenavComponent],
+  imports: [RouterOutlet,],
   template: 
-  `<router-outlet></router-outlet>
-   <app-sidenav></app-sidenav> `, //tira a necessidade do router-outlet no app.comp.html e deixa principal a parte sidenav
+  `<router-outlet></router-outlet> `, //tira a necessidade do router-outlet no app.comp.html e deixa principal a parte sidenav
   styles: [],
 })
 export class AppComponent {}
