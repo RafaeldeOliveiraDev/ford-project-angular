@@ -40,7 +40,7 @@ export class LoginComponent {
         // Mostra erro simples pro usuário
         alert('Usuário ou senha inválidos');
 
-        // Loga erro no console pra facilitar debug
+        //  erro no console pra facilitar debug
         console.error('Erro no login:', err);
       }
     });

@@ -17,8 +17,8 @@ export class AutenticacaoService {
   return this.http.post(this.apiUrl, {
     
     //  criação do método para usar no componente. BackEnd espera objetos que contenha esses atributos abaixo. Então, mapeamos usuario e senha
-    userName: usuario,
-    password: senha
+    nome: usuario,
+    senha: senha
   });
 }
 }
