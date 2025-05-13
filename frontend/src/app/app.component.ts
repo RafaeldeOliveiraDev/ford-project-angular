@@ -12,7 +12,11 @@ import { SidenavComponent } from './componentes/sidenav/sidenav.component';
   `<router-outlet></router-outlet> `, //tira a necessidade do router-outlet no app.comp.html e deixa principal a parte sidenav
   styles: [],
 })
-export class AppComponent {}
+export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
+}
 // vagas iel para pesquisador - vagas no site da IEL - estagio na ford - vagas na ford brasil lINKEDiN
 // GRUPOS DE PESQUISA E EXTE
 // DIRETOR ACADEMICO DE CURSO

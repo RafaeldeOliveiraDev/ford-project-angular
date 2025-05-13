@@ -20,6 +20,7 @@ export class HomeComponent {
   constructor(private router: Router){}
 
   logout(){
-    this.router.navigate(['/login'])
+    sessionStorage.clear()
+    this.router.navigate([''])
   }
 }

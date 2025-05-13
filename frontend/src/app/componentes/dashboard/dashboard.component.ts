@@ -3,7 +3,7 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
 import { CardComponent } from '../card/card.component';
 import { CarTableComponent } from '../car-table/car-table.component';
 import { DashboardService } from '../../services/dashboard/dashboard.service';
-import { Veiculo } from '../../models/car';
+import { Veiculo, VinInfos } from '../../models/car';
 
 
 @Component({
@@ -20,12 +20,14 @@ export class DashboardComponent implements OnInit {
   veiculoSelecionado: Veiculo = {
     id: -1,
     vehicle: '',
-    volumeTotal: 0,
+    volumetotal: 0,
     connected: 0,
     softwareUpdates: 0,
     vin: '',
     img: ''
   }
+
+  vinInfos: VinInfos = {id: -1, lat: 0, long: 0, nivelCombustivel: 0, odometro: 0, status: ""}
 
   ngOnInit() {
     this.dashboardService.getVeiculos().subscribe({
@@ -33,8 +35,25 @@ export class DashboardComponent implements OnInit {
       next: (veiculos) => {
         this.veiculos = Object.values(veiculos) as Veiculo[];
         this.veiculoSelecionado = veiculos[0]
+
+        this.dashboardService.getVinInfos(this.veiculoSelecionado.vin).subscribe({
+          error: () => {},
+          next: (vinInfos) => {
+            this.vinInfos = vinInfos
+          }
+        })
       }
     })
+  }
+
+  onChangeSelect(event: Event){
+    const id = Number((event.target as HTMLSelectElement).value)
+    const veiculo = this.veiculos.find((veiculo) => veiculo.id === id)
+
+    if(veiculo){
+      this.veiculoSelecionado = veiculo
+    }
+
   }
 
 }
