@@ -8,7 +8,7 @@ Content-Type: application/json
 
 {
     "nome": "admin",
-    "senha": "123"
+    "senha": "123456"
 }
 
 ###

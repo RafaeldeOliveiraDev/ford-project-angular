@@ -1,21 +1,24 @@
 <!-- SIDENAV - navegação -->
 <!-- <main class="main-container"> -->
-  <main class="main-container">
-    <div class="home-container ">
-       <div class="background-image">
-          <img class="img-fluid d-none d-sm-block" src="/img/ranger.png" alt="Imagem da camionete Ford Ranger">
-       </div>
+  <main class="container-fluid min-vh-100 d-flex align-items-center justify-content-center position-relative">
+  <!-- Imagem de fundo -->
+  <img src="/img/ranger.png"
+       class="position-absolute top-50 start-50 translate-middle img-fluid d-md-block"
+       alt="Imagem da camionete Ford Ranger"
+       style="max-width: 90vw; max-height: 90vh; z-index: -1;" />
 
-      <div class="overlay">
-          <div class="card">
-            <h3 class="card-title ">Sistemas de dados da FORD</h3>  
-            <div class="card p-4 shadow-lg">
-              <p class="card-text">Seja bem-vindo!</p>
-            </div>
-          </div>
-      </div>
-</div>
+  <!-- Card de conteúdo -->
+  <div class="container-card card shadow-lg p-4 bg-white rounded-4" style="max-width: 700px; width: 100%; height: 650px;">
+    <h3 class="card-title">Sistemas de dados da FORD</h3>
+    <div class="card mt-3 p-3 shadow-sm">
+      <p class="card-text">Seja bem-vindo! Acesse o menu para navegar por nosso site!</p>
+    </div>
+  </div>
 </main>
+
+<app-sidenav></app-sidenav>
+<router-outlet></router-outlet>
+
 
 <!-- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1200">
   <div class="carousel-inner">
@@ -33,5 +36,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
-  <app-sidenav></app-sidenav>
-  <router-outlet></router-outlet>
+ 

@@ -14,9 +14,9 @@ export class DashboardService {
     return this.http.get<Veiculo[]>("http://localhost:3001/vehicles")
   }
 
-  getVinInfos(vin: string){
-    return this.http.post<VinInfos>('http://localhost:3001/vehicleData', { vin })
-  }
+  getVinInfos(vin: string): Observable<VinInfos> {
+  return this.http.post<VinInfos>('http://localhost:3001/vehicleData', { vin });
+}
   
   constructor() { }
 }

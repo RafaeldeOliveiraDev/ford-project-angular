@@ -1,20 +1,27 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, Signal, signal, computed, effect } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { debounceTime, distinctUntilChanged, filter, switchMap, catchError, of } from 'rxjs';
+import { DashboardService } from '../../services/dashboard/dashboard.service';
+import { Veiculo, VinInfos } from '../../models/car';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { CardComponent } from '../card/card.component';
 import { CarTableComponent } from '../car-table/car-table.component';
-import { DashboardService } from '../../services/dashboard/dashboard.service';
-import { Veiculo, VinInfos } from '../../models/car';
-
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SidenavComponent, CardComponent, CarTableComponent],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SidenavComponent,
+    CardComponent,
+    CarTableComponent
+  ],
+  templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
-  dashboardService = inject(DashboardService)
+  dashboardService = inject(DashboardService);
 
   veiculos: Veiculo[] = [];
   veiculoSelecionado: Veiculo = {
@@ -25,42 +32,82 @@ export class DashboardComponent implements OnInit {
     softwareUpdates: 0,
     vin: '',
     img: ''
-  }
+  };
 
-  vinInfos: VinInfos = {id: -1, lat: 0, long: 0, nivelCombustivel: 0, odometro: 0, status: ""}
+  vinInfos: VinInfos = {
+    id: -1,
+    lat: 0,
+    long: 0,
+    nivelCombustivel: 0,
+    odometro: 0,
+    status: ''
+  };
+
+  vinControl = new FormControl<string | null>('');
+  vinNotFound = false;
 
   ngOnInit() {
     this.dashboardService.getVeiculos().subscribe({
-      error: () => {},
       next: (veiculos) => {
-        this.veiculos = Object.values(veiculos) as Veiculo[];
-        this.veiculoSelecionado = veiculos[0]
+        this.veiculos = Object.values(veiculos);
+        this.veiculoSelecionado = this.veiculos[0];
 
-        this.dashboardService.getVinInfos(this.veiculoSelecionado.vin).subscribe({
-          error: () => {},
-          next: (vinInfos) => {
-            this.vinInfos = vinInfos
-          }
-        })
-      }
-    })
+        this.buscarVinInfos(this.veiculoSelecionado.vin);
+      },
+      error: () => {}
+    });
+
+    // RxJS: VIN digitado
+    this.vinControl.valueChanges.pipe(
+  debounceTime(400),
+  filter((vin): vin is string => !!vin && vin.length >= 10),
+  distinctUntilChanged(),
+  switchMap(vin =>
+    this.dashboardService.getVinInfos(vin).pipe(
+      catchError(() => {
+        this.vinNotFound = true;
+        return of(null);
+      })
+    )
+  )
+).subscribe((vinInfos) => {
+  if (vinInfos) {
+  this.vinInfos = vinInfos;
+  this.vinNotFound = false;
+
+  const encontrado = this.veiculos.find(v => v.vin === this.vinControl.value);
+
+  this.veiculoSelecionado = encontrado ?? {
+    id: -1,
+    vehicle: 'VIN Manual',
+    volumetotal: 0,
+    connected: 0,
+    softwareUpdates: 0,
+    vin: this.vinControl.value ?? '',
+    img: ''
+  };
+
+  this.vinControl.setValue('');
+}
+});
   }
 
-  onChangeSelect(event: Event){
-    const id = Number((event.target as HTMLSelectElement).value)
-    const veiculo = this.veiculos.find((veiculo) => veiculo.id === id)
+  onChangeSelect(event: Event) {
+    const id = Number((event.target as HTMLSelectElement).value);
+    const veiculo = this.veiculos.find((v) => v.id === id);
 
-    if(veiculo){
-      this.veiculoSelecionado = veiculo
+    if (veiculo) {
+      this.veiculoSelecionado = veiculo;
+      this.buscarVinInfos(veiculo.vin);
     }
-
-    this.dashboardService.getVinInfos(this.veiculoSelecionado.vin).subscribe({
-      error: () => {},
-      next: (vinInfos) => {
-        this.vinInfos = vinInfos
-      }
-    })
-
   }
 
+  private buscarVinInfos(vin: string) {
+    this.dashboardService.getVinInfos(vin).subscribe({
+      next: (vinInfos) => {
+        this.vinInfos = vinInfos;
+      },
+      error: () => {}
+    });
+  }
 }
