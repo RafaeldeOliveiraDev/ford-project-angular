@@ -1,1 +1,42 @@
-<p>cadastro works!</p>
+<div class="register-page d-flex justify-content-center align-items-center">
+  <div class="card p-5 shadow-lg glass-card">
+    <h1 class="text-center mb-4 fw-bold text-primary" style="font-family: 'Segoe Script'">Ford</h1>
+
+    <form>
+      <div class="form-group mb-3">
+        <label>Email</label>
+        <input type="email" class="form-control border-0 border-bottom" [(ngModel)]="email" name="email" />
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Senha</label>
+        <input type="password" class="form-control border-0 border-bottom" [(ngModel)]="password" name="password" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label>Confirme sua Senha</label>
+        <input type="password" class="form-control border-0 border-bottom" [(ngModel)]="confirmPassword" name="confirmPassword" />
+      </div>
+
+      <!-- Redes Sociais -->
+      <div class="d-flex justify-content-center gap-3 mb-4">
+        <button type="button" class="btn btn-secondary rounded-circle"><i class="bi bi-linkedin"></i></button>
+        <button type="button" class="btn btn-secondary rounded-circle"><i class="bi bi-google"></i></button>
+        <button type="button" class="btn btn-secondary rounded-circle"><i class="bi bi-facebook"></i></button>
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-primary px-4 rounded-pill">Continuar</button>
+      </div>
+    </form>
+
+    <div class="text-center mt-4">
+      <a href="#" class="text-primary">Já cadastrado? Faça seu login</a>
+      <div class="d-flex justify-content-center gap-4 mt-2">
+        <a href="#" class="text-primary small">Programa</a>
+        <a href="#" class="text-primary small">Suporte</a>
+      </div>
+    </div>
+  </div>
+</div>
+

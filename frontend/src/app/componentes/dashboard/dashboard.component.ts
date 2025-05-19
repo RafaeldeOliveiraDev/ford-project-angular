@@ -127,16 +127,6 @@ export class DashboardComponent implements OnInit {
     private authService: AutenticacaoService
   ) {}
 
-  solicitarProposta() {
-  const logado = this.authService.isLogado();
-
-  if (logado) {
-    this.mostrarContato = true;
-  } else {
-    this.mostrarContato = false;
-    this.router.navigate(['/login']);
-  }
-}
 
 
 

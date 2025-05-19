@@ -17,11 +17,6 @@ export class AppComponent {
     throw new Error('Method not implemented.');
   }
 
-  constructor() {
-  if (!localStorage.getItem('usuarioLogado')) {
-    localStorage.setItem('usuarioLogado', 'false'); // força o estado inicial
-  }
-}
 }
 
 // vagas iel para pesquisador - vagas no site da IEL - estagio na ford - vagas na ford brasil lINKEDiN
