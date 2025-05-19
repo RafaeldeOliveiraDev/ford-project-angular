@@ -61,9 +61,9 @@
                 [formControl]="vinControl"
                 placeholder="Digite o código VIN"
         />
-        <button class="btn btn-outline-primary" (click)="mostrarContato = true">
+        <button class="btn btn-outline-primary" (click)="solicitarProposta()">
           Solicitar Proposta
-      </button>
+        </button>
 
       <app-contato *ngIf="mostrarContato" (fechar)="mostrarContato = false" />
 

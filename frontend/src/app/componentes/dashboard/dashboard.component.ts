@@ -9,6 +9,8 @@ import { CardComponent } from '../card/card.component';
 import { CarTableComponent } from '../car-table/car-table.component';
 import { HeaderComponent } from '../header/header.component';
 import { ContatoComponent } from '../contato/contato.component';
+import { AutenticacaoService } from '../../services/autenticacao/autenticacao.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -94,6 +96,7 @@ export class DashboardComponent implements OnInit {
   this.vinControl.setValue('');
 }
 });
+  this.mostrarContato = false;
   }
 
   onChangeSelect(event: Event) {
@@ -115,6 +118,26 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // condição exercida para exibir o contato ao click. Inicialmente como falso (nao mostra)
   mostrarContato = false;
+
+  // para autenticar e verificar se o usuário está logado por meio do inject
+  constructor(
+    private router: Router,
+    private authService: AutenticacaoService
+  ) {}
+
+  solicitarProposta() {
+  const logado = this.authService.isLogado();
+
+  if (logado) {
+    this.mostrarContato = true;
+  } else {
+    this.mostrarContato = false;
+    this.router.navigate(['/login']);
+  }
+}
+
+
 
 }

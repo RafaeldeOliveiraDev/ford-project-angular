@@ -32,8 +32,9 @@ export class LoginComponent {
     this.authService.autenticar(this.usuario, this.senha).subscribe({
       next: (res) => {
         
-        // Redireciona pra página inicial
-        this.router.navigate(['home']);
+        localStorage.setItem('usuarioLogado', 'true'); // ← MARCA COMO LOGADO
+        this.router.navigate(['/dashboard']);          // ← REDIRECIONA P/ dashboard
+
       },
       error: (err) => {
        

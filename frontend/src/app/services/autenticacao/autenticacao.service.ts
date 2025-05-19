@@ -21,4 +21,8 @@ export class AutenticacaoService {
     senha: senha
   });
 }
+
+isLogado(): boolean {
+  return localStorage.getItem('usuarioLogado') === 'true';
+}
 }

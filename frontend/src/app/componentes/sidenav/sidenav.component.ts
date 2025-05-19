@@ -23,7 +23,7 @@ export class SidenavComponent {
   constructor(private router: Router){}
 
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+  localStorage.setItem('usuarioLogado', 'false');
+  this.router.navigate(['/login']);
   }
 }
