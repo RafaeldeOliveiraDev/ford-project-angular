@@ -7,6 +7,8 @@ import { Veiculo, VinInfos } from '../../models/car';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { CardComponent } from '../card/card.component';
 import { CarTableComponent } from '../car-table/car-table.component';
+import { HeaderComponent } from '../header/header.component';
+import { ContatoComponent } from '../contato/contato.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +18,9 @@ import { CarTableComponent } from '../car-table/car-table.component';
     ReactiveFormsModule,
     SidenavComponent,
     CardComponent,
-    CarTableComponent
+    CarTableComponent,
+    HeaderComponent,
+    ContatoComponent,
   ],
   templateUrl: './dashboard.component.html'
 })
@@ -110,4 +114,7 @@ export class DashboardComponent implements OnInit {
       error: () => {}
     });
   }
+
+  mostrarContato = false;
+
 }

@@ -1,3 +1,7 @@
+<div class="p-0">
+<app-header></app-header>
+</div>
+
 <div class="container-fluid">
   <div class="row">
     <!-- Sidenav -->
@@ -57,6 +61,12 @@
                 [formControl]="vinControl"
                 placeholder="Digite o código VIN"
         />
+        <button class="btn btn-outline-primary" (click)="mostrarContato = true">
+          Solicitar Proposta
+      </button>
+
+      <app-contato *ngIf="mostrarContato" (fechar)="mostrarContato = false" />
+
         <small class="text-danger" *ngIf="vinNotFound">
           VIN não encontrado.
         </small>

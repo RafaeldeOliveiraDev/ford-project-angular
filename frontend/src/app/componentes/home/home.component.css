@@ -2,6 +2,35 @@
   opacity: 0.83;
 }
 
+.botao-veiculos{
+  border-radius: 32px;
+  background-color: #00095B;
+  color: #fff;
+}
+
+.botao-veiculos:hover{
+  scale: 1.1;
+  transition: 0.3s;
+}
+
+.botao-oferta{
+  border-radius: 32px;
+  background-color: #00095B;
+  border: #00095B;
+}
+
+.container-video{
+  background-color: #00095B;
+  width: 98vw;
+}
+
+
+
+.botao-oferta:hover{
+  scale: 1.1;
+  transition: 0.3s;
+}
+
 @media (max-width: 851px) {
   
     .container-card{

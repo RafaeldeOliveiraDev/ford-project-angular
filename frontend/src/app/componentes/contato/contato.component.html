@@ -1,0 +1,79 @@
+<div class="card shadow p-4 contato-card overlay">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0">Preencha o Formulário de Contato Abaixo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="fecharFormulario()"></button>
+  </div>
+
+  <form #formRef="ngForm" (ngSubmit)="enviarFormulario()" class="row g-3">
+    <div class="col-md-6">
+      <label for="nome" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="nome" [(ngModel)]="form.nome" name="nome" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="sobrenome" class="form-label">Sobrenome</label>
+      <input type="text" class="form-control" id="sobrenome" [(ngModel)]="form.sobrenome" name="sobrenome" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="form.email" name="email" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="celular" class="form-label">Celular</label>
+      <input type="tel" class="form-control" id="celular" [(ngModel)]="form.celular" name="celular" required>
+      <small class="text-muted">Apenas números</small>
+    </div>
+
+    <div class="col-12">
+      <label for="preferencia" class="form-label">Preferência de Contato</label>
+      <select class="form-select" id="preferencia" [(ngModel)]="form.preferencia" name="preferencia" required>
+        <option disabled selected value="">Escolha...</option>
+        <option>Telefone</option>
+        <option>Email</option>
+        <option>Whatsapp</option>
+      </select>
+    </div>
+
+    <div class="col-12 d-flex flex-column">
+      <label class="form-label">Selecione o(s) modelo(s) FORD interessado(a)</label>
+      <div>
+      <div class="form-check form-check-inline ms-2">
+        <input class="form-check-input" type="radio" id="ranger" name="tipoRanger" value="ranger" [(ngModel)]="form.tipoRanger">
+        <label class="form-check-label" for="ranger">Ranger</label>
+      </div>
+      
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tipoMustang" id="mustang" value="mustang" [(ngModel)]="form.tipoMustang">
+        <label class="form-check-label" for="mustang">Mustang</label>
+      </div>
+      
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="tipoTerritoy" id="territory" value="territory" [(ngModel)]="form.tipoTerritoy">
+        <label class="form-check-label" for="territory">Territory</label>
+      </div>
+      
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio"  id="bronco" name="tipoBronco" value="bronco" [(ngModel)]="form.tipoBronco">
+        <label class="form-check-label" for="bronco">Bronco</label>
+      </div>
+      </div>
+    </div>
+
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="aceiteTermos" [(ngModel)]="form.aceiteTermos" name="aceiteTermos" required>
+      <label class="form-check-label small text-muted" for="aceiteTermos">
+        Você pode consultar mais detalhes sobre como utilizamos os seus dados na nossa
+        <strong><a href="https://www.ford.com.br/politica-de-privacidade/" target="_blank">Política de privacidade</a></strong>.
+        <br><br>
+        Confirmo que sou maior de 18 anos e quero receber contato da Ford via canais de comunicação Ford e/ou das Concessionárias Ford e concordo com a <strong>Política de privacidade</strong> da Ford.
+      </label>
+    </div>
+
+    <div class="col-12 text-end">
+      <button type="submit" class="btn btn-primary" [disabled]="!formRef.valid">Enviar</button>
+    </div>
+  </form>
+</div>

@@ -1,24 +1,95 @@
 <!-- SIDENAV - navegação -->
 <!-- <main class="main-container"> -->
-  <main class="container-fluid min-vh-100 d-flex align-items-center justify-content-center position-relative">
+  <main class="container-fluid min-vh-100 d-flex flex-column align-items-center justify-content-center position-relative">
   <!-- Imagem de fundo -->
-  <img src="/img/ranger.png"
-       class="position-absolute top-50 start-50 translate-middle img-fluid d-md-block"
-       alt="Imagem da camionete Ford Ranger"
-       style="max-width: 90vw; max-height: 90vh; z-index: -1;" />
-
-  <!-- Card de conteúdo -->
-  <div class="container-card card shadow-lg p-4 bg-white rounded-4" style="max-width: 700px; width: 100%; height: 650px;">
-    <h3 class="card-title">Sistemas de dados da FORD</h3>
-    <div class="card mt-3 p-3 shadow-sm">
-      <p class="card-text">Seja bem-vindo! Acesse o menu para navegar por nosso site!</p>
+  <section id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
+  
+    <div class="carousel-inner">
+      
+      <div class="carousel-item active">
+        <img src="/img/ranger-t1.png" class="d-block w-100" alt="Ford Ranger" style="max-height: 500px; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Potência em cada estrada</h5>
+          <p>Explore a força da Ford Ranger.</p>
+          <a routerLink="/dashboard" class="btn btn-light mt-2">Saiba mais</a>
+      </div>
+    </div>
+    
+    <div class="carousel-item">
+      <img src="/img/mustang-2.png" class="d-block w-100" alt="Ford Mustang" style="max-height: 90vh; object-fit: cover; width: 100%;">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Velocidade e estilo</h5>
+        <p>Mustang: o esportivo dos sonhos.</p>
+        <a routerLink="/dashboard" class="btn btn-primary mt-2">Ver modelo</a>
+      </div>
+    </div>
+    
+    <div class="carousel-item">
+      <img src="/img/bronco-2.png" class="d-block w-100" alt="Ford Territory" style="max-height: 90vh; object-fit: cover; width: 100%;">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Conforto e inovação</h5>
+        <p>Descubra a experiência Ford Territory.</p>
+        <a routerLink="/dashboard" class="btn btn-outline-light mt-2">Ofertas</a>
+      </div>
     </div>
   </div>
+
+  <!-- Navegação -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselBanner" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden"></span>
+  </button>
+</section>
+
+<section class="py-5 bg-white text-center">
+  <h2 class="fw-bold text-primary">Escolha um Ford para o seu estilo de vida</h2>
+  <a href="/dashboard"><button class="botao-veiculos btn px-4 py-2 mt-3 shadow">Ver todos os veículos</button></a> 
+
+  <div class="mt-4">
+    <img src="/img/choose-car.png" alt="Veículos Ford" class="img-fluid" />
+  </div>
+</section>
+
+<!-- ✅ 3. Vídeo Institucional -->
+<section class="container-video video-section py-5 text-center text-white">
+  <div class="container d-flex flex-column align-items-center justify-content-center">
+    <h3 class="fw-bold mb-4">Experimente a Nova Era Ford</h3>
+    <p class="mb-5">Assista ao nosso vídeo institucional e sinta o que nos move.</p>
+
+    <div class="shadow-lg">
+      <iframe width="1179" height="480" src="https://www.youtube.com/embed/kKdgnPwkypk?autoplay=1&mute=1" title="Novo Mustang 2024" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Ofertas -->
+<section class="position-relative mt-5 mb-4 ">
+   <h2 class="fw-bold text-primary text-center">Explore nossos lançamentos FORD</h2>
+    <a href="/contato"><button class="botao-veiculos btn px-4 py-2 mt-3 shadow">Qualidade, estabilidade e conforto!</button></a>
+
+  <img src="/img/oferta.png" alt="Ofertas Ford"
+       class=" img-fluid w-100"
+       style="object-fit: cover; height: 300px; filter: brightness(0.7);" />
+
+  <div class="position-absolute top-50 start-0 translate-middle-y ps-4 text-white">
+    <h3 class="fw-bold">Ofertas</h3>
+    <p>Encontre a oferta ideal para adquirir seu novo Ford.</p>
+    <a href="/dashboard"><button class="botao-oferta btn btn-primary">Ver ofertas</button></a>
+  </div>
+</section>
+
+
+
 </main>
 
 <app-sidenav></app-sidenav>
+<app-header></app-header>
 <router-outlet></router-outlet>
-
+<app-footer></app-footer>
 
 <!-- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1200">
   <div class="carousel-inner">

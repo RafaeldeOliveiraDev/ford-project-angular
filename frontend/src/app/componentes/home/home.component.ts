@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { SidenavComponent } from '../sidenav/sidenav.component';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @Component({
@@ -10,7 +12,9 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
   imports: [
     CommonModule, 
     RouterOutlet,
-    SidenavComponent
+    SidenavComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
