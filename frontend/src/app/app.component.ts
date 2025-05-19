@@ -22,8 +22,6 @@ export class AppComponent {
     localStorage.setItem('usuarioLogado', 'false'); // força o estado inicial
   }
 }
-} if (!localStorage.getItem('usuarioLogado')) {
-  localStorage.setItem('usuarioLogado', 'false');
 }
 
 // vagas iel para pesquisador - vagas no site da IEL - estagio na ford - vagas na ford brasil lINKEDiN
