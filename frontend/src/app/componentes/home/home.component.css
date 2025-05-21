@@ -1,43 +1,192 @@
-.btn-mustang{
-  background-color: #00095B;
-}
-
-.txt-subtitle{
-  color: #00095B;
-}
-
-.botao-veiculos{
-  border-radius: 32px;
+/* Estilos Ford - Design Moderno */
+.botao-saibaMais{
   background-color: #00095B;
   color: #fff;
 }
 
-.botao-veiculos:hover{
-  scale: 1.1;
-  transition: 0.3s;
+.ford-hero-image {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
 }
 
-.botao-oferta{
-  border-radius: 32px;
-  background-color: #00095B;
-  border: #00095B;
+.ford-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ford-hero-caption {
+  position: absolute;
+  bottom: 15%;
+  color: white;
+  max-width: 600px;
+}
+
+.ford-hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.ford-hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.ford-hero-features {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.ford-feature-badge {
+  background-color: rgba(255,255,255,0.2);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+}
+
+.ford-hero-btn {
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  border-radius: 50px;
+}
+
+/* Seção Escolha */
+.ford-choose-section {
+  background-color: #f8f9fa;
+}
+
+.ford-section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d2d2d;
+  position: relative;
+  display: inline-block;
+}
+
+.ford-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #0056b3;
+}
+
+.ford-vehicle-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ford-vehicle-card:hover {
+  transform: translateY(-10px);
+}
+
+.ford-vehicle-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.ford-vehicle-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  color: #2d2d2d;
+}
+
+.ford-vehicle-desc {
+  color: #666;
+  padding: 0 1rem;
+  flex-grow: 1;
+}
+
+.ford-vehicle-link {
+  display: inline-block;
+  margin: 1rem 0;
+  color: #0056b3;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Seção Ofertas */
+.ford-offers-section {
+  padding: 5rem 0;
 }
 
 .container-video{
-  background-color: #00095B;
-  width: 98vw;
+    background-color: #00095B;
 }
 
-
-
-.botao-oferta:hover{
-  scale: 1.1;
-  transition: 0.3s;
+.ford-offers-banner {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-@media (max-width: 851px) {
+.ford-offers-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.ford-offers-content {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  color: white;
+  max-width: 500px;
+}
+
+.ford-offers-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.ford-offers-text {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.ford-offers-btn {
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 50px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .ford-hero-title {
+    font-size: 2rem;
+  }
   
-    .container-card{
-      margin-top: 64px;
-    }
+  .ford-hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .ford-offers-content {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+  }
 }

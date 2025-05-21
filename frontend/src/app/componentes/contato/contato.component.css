@@ -6,8 +6,21 @@
   left: 50%;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: #f1f1f1;
   border-radius: 12px;
   max-height: 100vh;
 }
 
+/* Adicione isso ao seu arquivo CSS existente */
+.overlay {
+  z-index: 9998;
+}
+
+.overlay.active {
+  display: block;
+}
+
+.contato-card {
+  /* seu CSS existente permanece igual */
+  overflow-y: auto; /* permite rolagem se o formulário for muito grande */
+}

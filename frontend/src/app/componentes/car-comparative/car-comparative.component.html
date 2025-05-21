@@ -1,0 +1,129 @@
+<div class="container mt-4">
+  <!-- Título da Seção -->
+  <h3 class="mb-4 text-primary">
+    <i class="bi bi-arrow-left-right"></i> Comparar Modelos Ford
+  </h3>
+
+  <!-- Cards de Seleção de Carros -->
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let carro of carros">
+      <div class="card h-100 shadow-sm">
+        <img [src]="carro.imagem" 
+             [alt]="carro.modelo" 
+             class="card-img-top p-3" 
+             style="height: 200px; object-fit: contain;">
+        <div class="card-body">
+          <h5 class="card-title">{{ carro.modelo }}</h5>
+          <p class="text-primary fw-bold">{{ carro.preco }}</p>
+          <div class="form-check">
+            <input class="form-check-input" 
+                   type="checkbox" 
+                   [id]="'compare-'+carro.modelo"
+                   (change)="toggleCarroParaComparar(carro, $event)">
+            <label class="form-check-label" [for]="'compare-'+carro.modelo">
+              Selecionar para comparar
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botão de Comparação -->
+  <div class="text-center mb-5">
+    <button class="btn btn-primary btn-lg" 
+            (click)="mostrarComparativoModal()"
+            [disabled]="carrosParaComparar.length !== 2">
+      <i class="bi bi-arrow-left-right me-2"></i> Comparar Carros
+    </button>
+  </div>
+
+  <!-- Modal de Comparação -->
+  <div class="modal fade" [class.show]="mostrarComparativo" [style.display]="mostrarComparativo ? 'block' : 'none'">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Comparativo Ford</h5>
+          <button type="button" class="btn-close btn-close-white" (click)="fecharComparativo()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th style="width: 30%;">Especificação</th>
+                  <th style="width: 35%;">{{ carrosParaComparar[0]?.modelo }}</th>
+                  <th style="width: 35%;">{{ carrosParaComparar[1]?.modelo }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Imagens -->
+                <tr>
+                  <td><strong>Imagem</strong></td>
+                  <td>
+                    <img [src]="carrosParaComparar[0]?.imagem" class="img-fluid" style="max-height: 150px;">
+                  </td>
+                  <td>
+                    <img [src]="carrosParaComparar[1]?.imagem" class="img-fluid" style="max-height: 150px;">
+                  </td>
+                </tr>
+                <!-- Preço -->
+                <tr>
+                  <td><strong>Preço</strong></td>
+                  <td>{{ carrosParaComparar[0]?.preco }}</td>
+                  <td>{{ carrosParaComparar[1]?.preco }}</td>
+                </tr>
+                <!-- Especificações Técnicas -->
+                <tr>
+                  <td><strong>Altura da Caçamba (mm)</strong></td>
+                  <td>{{ carrosParaComparar[0]?.alturaCacamba }}</td>
+                  <td>{{ carrosParaComparar[1]?.alturaCacamba }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Altura do Veículo (mm)</strong></td>
+                  <td>{{ carrosParaComparar[0]?.alturaVeiculo }}</td>
+                  <td>{{ carrosParaComparar[1]?.alturaVeiculo }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Altura livre do solo (mm)</strong></td>
+                  <td>{{ carrosParaComparar[0]?.alturaSolo }}</td>
+                  <td>{{ carrosParaComparar[1]?.alturaSolo }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Capacidade de carga (Kg)</strong></td>
+                  <td>{{ carrosParaComparar[0]?.carga }}</td>
+                  <td>{{ carrosParaComparar[1]?.carga }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Motor</strong></td>
+                  <td>{{ carrosParaComparar[0]?.motor }}</td>
+                  <td>{{ carrosParaComparar[1]?.motor }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Potência (cv)</strong></td>
+                  <td>{{ carrosParaComparar[0]?.potencia }}</td>
+                  <td>{{ carrosParaComparar[1]?.potencia }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Volume de caçamba (L)</strong></td>
+                  <td>{{ carrosParaComparar[0]?.volumeCacamba }}</td>
+                  <td>{{ carrosParaComparar[1]?.volumeCacamba }}</td>
+                </tr>
+                <tr>
+                  <td><strong>Roda</strong></td>
+                  <td>{{ carrosParaComparar[0]?.roda }}</td>
+                  <td>{{ carrosParaComparar[1]?.roda }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="fecharComparativo()">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade" [class.show]="mostrarComparativo" [style.display]="mostrarComparativo ? 'block' : 'none'"></div>
+</div>
+

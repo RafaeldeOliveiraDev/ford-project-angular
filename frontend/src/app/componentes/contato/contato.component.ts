@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ContatoComponent {
   @Output() fechar = new EventEmitter<void>();
+  confirmandoEnvio = false; // controle para confirmação
+
 
   form = {
     nome: '',
@@ -24,16 +26,32 @@ export class ContatoComponent {
     tipoMustang: '',
     tipoTerritoy: '',
     tipoBronco: '',
-
+    mensagem: '',
   };
 
-  enviarFormulario() {
+   enviarFormulario() {
+    if (!this.confirmandoEnvio) {
+      this.confirmandoEnvio = true;
+      return; // volta para o formulário para confirmação
+    }
+    
     console.log('Form enviado:', this.form);
     this.fecharFormulario();
     alert("Dados enviados com sucesso!");
+    this.confirmandoEnvio = false;
+  }
+
+  // função para cancelar o envio
+  cancelarEnvio() {
+    this.confirmandoEnvio = false;
   }
 
   fecharFormulario() {
     this.fechar.emit();
+  }
+
+  //  função para validar o celular
+  validarCelular(celular: string): boolean {
+    return /^\d+$/.test(celular);
   }
 }

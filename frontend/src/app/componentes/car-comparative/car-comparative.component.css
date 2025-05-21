@@ -1,0 +1,72 @@
+/* Cards de seleção */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 86, 179, 0.2);
+}
+
+.card-img-top {
+  background-color: #f8f9fa;
+  object-position: center;
+}
+
+/* Checkbox de seleção */
+.form-check-input {
+  width: 1.2em;
+  height: 1.2em;
+  margin-top: 0.25em;
+  cursor: pointer;
+}
+
+.form-check-label {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Modal de comparação */
+.modal-content {
+  border: none;
+  border-radius: 10px;
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Botões */
+.btn-primary {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-primary:hover {
+  background-color: #003d82;
+  border-color: #003d82;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .modal-dialog {
+    margin: 1rem;
+  }
+  
+  .card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+}

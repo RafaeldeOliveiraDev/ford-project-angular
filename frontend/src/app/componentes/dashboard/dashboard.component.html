@@ -1,95 +1,124 @@
-<div class="p-0">
-<app-header></app-header>
-</div>
-
-<div class="container-fluid">
-  <div class="row">
-    <!-- Sidenav -->
+<div class="container-fluid bg-light" style="min-height: 100vh;">
+  <!-- Header fixo com margem de segurança -->
+  <app-header class="sticky-top bg-white shadow-sm" style="height: 60px; z-index: 1000;"></app-header>
+  
+  <div class="row" style="margin-top: 60px;">
+    <!-- Sidebar -->
     <div class="col-auto p-0">
       <app-sidenav></app-sidenav>
     </div>
     
-    <!-- ]dashboard contenduoo -->
-    <div class="col mt-4">
+    <!-- Conteúdo Principal -->
+    <main class="col p-4">
+      <!-- Cabeçalho e Seletor -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h4 text-primary fw-bold mb-0">
+          <i class="bi bi-car-front me-2"></i>VEÍCULOS
+        </h1>
+        <h1 class="h4 text-primary fw-bold mb-0">
+          DASHBOARD DA FORD
+        </h1>
+        <div class="d-flex gap-3 align-items-center">
+          <!-- <p class="text-primary h4 fw-bold mb-0">Selecione o carro -></p> -->
+        <select class="form-select form-select-sm w-auto" (change)="onChangeSelect($event)">
+          @for(v of veiculos; track v.id) {
+          <option value="{{ v.id }}">{{ v.vehicle }}</option>
+          }
+        </select>
+        </div>
+      </div>
 
-      <div class="row gx-3 gy-3 my-4">
-        <!-- selecionar carros -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Veículos</h5>
-              <select class="form-select" (change)="onChangeSelect($event)">
-                @for(v of veiculos; track v.id) {
-                <option value="{{ v.id }}">{{ v.vehicle }}</option>
-                }
-              </select>
+      <!-- Seção da Imagem do Veículo (POSIÇÃO CORRETA) -->
+      <div class="text-center mb-4 bg-white p-3 rounded shadow-sm">
+        <img src="{{ veiculoSelecionado.img }}" 
+             alt="{{ veiculoSelecionado.vehicle }}" 
+             class="img-fluid" 
+             style="max-height: 250px; object-fit: contain;">
+        <h2 class="h5 mt-2">{{ veiculoSelecionado.vehicle }}</h2>
+      </div>
+
+      <!-- Cards de Métricas -->
+      <div class="mb-4 p-3 bg-white rounded shadow-sm">
+        <h2 class="h5 fw-bold mb-3">Disponíveis</h2>
+        
+        <div class="row g-2">
+          <!-- Total de Vendas -->
+          <div class="col-12 col-md-4">
+            <div class="p-3 border rounded">
+              <h3 class="h6 text-muted mb-1">Total de vendas</h3>
+              <p class="h4 fw-bold mb-0">{{ veiculoSelecionado.volumetotal }} Unidades</p>
+            </div>
+          </div>
+          
+          <!-- Conectados -->
+          <div class="col-12 col-md-4">
+            <div class="p-3 border rounded">
+              <h3 class="h6 text-muted mb-1">Conectados</h3>
+              <p class="h4 fw-bold mb-0">{{ veiculoSelecionado.connected }} Unidades</p>
+            </div>
+          </div>
+          
+          <!-- Atualizações -->
+          <div class="col-12 col-md-4">
+            <div class="p-3 border rounded">
+              <h3 class="h6 text-muted mb-1">Update Software</h3>
+              <p class="h4 fw-bold mb-0">{{ veiculoSelecionado.softwareUpdates }} Unidades</p>
             </div>
           </div>
         </div>
-
-        <!-- Totvendass -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <app-card class="h-100" [titulo]="'Total de vendas'" [valor]="veiculoSelecionado.volumetotal"></app-card>
-        </div>
-
-        <!-- Conectados -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <app-card class="h-100" [titulo]="'Conectados'" [valor]="veiculoSelecionado.connected"></app-card>
-        </div>
-
-        <!-- opudate -->
-        <div class="col-12 col-sm-6 col-lg-3">
-          <app-card class="h-100" [titulo]="'Upd. Software'" [valor]="veiculoSelecionado.softwareUpdates"></app-card>
-        </div>
       </div>
 
-      <!-- immagem do veiculos -->
-      <div class="row mb-4">
-        <div class="col text-center">
-          <img src="{{ veiculoSelecionado.img }}" alt="{{ veiculoSelecionado.vehicle }}" class="img-fluid rounded shadow" style="max-height: 300px; object-fit: contain;" />
+      <!-- Busca por VIN -->
+      <div class="mb-4 p-3 bg-white rounded shadow-sm">
+        <h2 class="h5 fw-bold mb-3">Buscar por VIN</h2>
+        <div class="input-group">
+          <input type="text" 
+                 class="form-control" 
+                 [formControl]="vinControl"
+                 placeholder="Digite o código VIN">
+          <button class="btn btn-primary" type="button">
+            <i class="bi bi-search"></i>
+          </button>
         </div>
-      </div>
-
-      <div class="row justify-content-center my-4">
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Buscar por VIN</h5>
-              <input
-                type="text"
-                class="form-control"
-                [formControl]="vinControl"
-                placeholder="Digite o código VIN"
-        />
-        <button class="btn btn-outline-primary" (click)="mostrarContato = true">
-          Solicitar Proposta
-        </button>
-
-      <app-contato *ngIf="mostrarContato" (fechar)="mostrarContato = false" />
-
-        <small class="text-danger" *ngIf="vinNotFound">
-          VIN não encontrado.
+        <small class="text-danger mt-1" *ngIf="vinNotFound">
+          <i class="bi bi-exclamation-triangle"></i> VIN não encontrado
         </small>
       </div>
-    </div>
-  </div>
-</div>
 
-      <!-- tabela de dados -->
-      <div class="row mb-5">
-        <div class="col">
-          <div class="table-responsive shadow-sm rounded">
-            <app-car-table
-              [vin]="veiculoSelecionado.vin"
-              [lat]="vinInfos.lat"
-              [long]="vinInfos.long"
-              [nivelCombustivel]="vinInfos.nivelCombustivel"
-              [odometro]="vinInfos.odometro"
-              [status]="vinInfos.status"
-            ></app-car-table>
+      <!-- Dados do Veículo -->
+      <div class="p-3 bg-white rounded shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="h5 fw-bold mb-0">Dados do Veículo</h2>
+          <button class="btn btn-primary ford-hero-btn" (click)="mostrarContato = true">
+             <a class="btn btn-primary ford-hero-btn">Solicitar proposta</a>
+          </button>
+        </div>
+        
+        <!-- Dados em formato de tabela simples -->
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>VIN</strong><br>{{ veiculoSelecionado.vin || '--' }}</p>
+            <p><strong>ODÓMETRO</strong><br>{{ vinInfos.odometro || '--' }} Km</p>
+            <p><strong>NÍVEL COMBUSTÍVEL</strong><br>{{ vinInfos.nivelCombustivel || '--' }}%</p>
+          </div>
+          <div class="col-md-6">
+            <p><strong>STATUS</strong><br>
+              <span class="badge bg-success" *ngIf="vinInfos.status === 'on'">ON</span>
+              <span class="badge bg-danger" *ngIf="vinInfos.status === 'off'">OFF</span>
+              <span *ngIf="!vinInfos.status">--</span>
+            </p>
+            <p><strong>LAT</strong><br>{{ vinInfos.lat || '--' }}</p>
+            <p><strong>LONG</strong><br>{{ vinInfos.long || '--' }}</p>
           </div>
         </div>
       </div>
-    </div>
+      
+      <!-- Modal de Contato -->
+      <app-contato *ngIf="mostrarContato" (fechar)="mostrarContato = false" />
+
+      <app-car-comparative></app-car-comparative>
+    </main>
   </div>
 </div>
+
+<app-footer></app-footer>

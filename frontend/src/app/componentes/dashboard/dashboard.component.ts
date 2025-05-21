@@ -11,6 +11,8 @@ import { HeaderComponent } from '../header/header.component';
 import { ContatoComponent } from '../contato/contato.component';
 import { AutenticacaoService } from '../../services/autenticacao/autenticacao.service';
 import { Router } from '@angular/router';
+import { CarComparativeComponent } from '../car-comparative/car-comparative.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,6 +25,8 @@ import { Router } from '@angular/router';
     CarTableComponent,
     HeaderComponent,
     ContatoComponent,
+    CarComparativeComponent,
+    FooterComponent,
   ],
   templateUrl: './dashboard.component.html'
 })
