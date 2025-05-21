@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
 
 interface Carro {
   modelo: string;
@@ -23,6 +24,11 @@ interface Carro {
   styleUrls: ['./car-comparative.component.css']
 })
 export class CarComparativeComponent {
+
+  constructor(
+    public themeService: ThemeService,
+  ){}
+
   carrosParaComparar: Carro[] = [];
   mostrarComparativo = false;
 

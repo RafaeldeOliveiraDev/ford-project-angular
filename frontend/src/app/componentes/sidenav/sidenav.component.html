@@ -4,6 +4,9 @@
   <button class="navbar-toggler" type="button" (click)="toggle()">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <div class="logo-ford">
+  <img src="/img/ford.png" class="img-fluid" style="max-height: 40px;" alt="Logo da FORD">
+  </div>
 </nav>
 
 <div class="overlay" *ngIf="isOpen" (click)="toggle()"></div>
@@ -20,20 +23,28 @@
     
     <li class="nav-item mb-2">
       <a class="nav-link" routerLink="/home" (click)="toggle()">
-        <i class="bi bi-house-door me-2"></i> Home
+        <i class="bi bi-house-door me-2"></i> HOME
       </a>
     </li>
    
     <li class="nav-item mb-2">
       <a class="nav-link" routerLink="/dashboard" (click)="toggle()">
-        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+        <i class="bi bi-speedometer2 me-2"></i> VEÍCULOS
       </a>
       
     </li>
     
     <li class="nav-item">
+        <button class="btn btn-sm btn-outline-secondary"
+                (click)="toggleTheme()"
+                [attr.aria-label]="themeService.isDarkMode() ? 'Alternar para modo claro' : 'Alternar para modo escuro'">
+          {{ themeService.isDarkMode() ? 'Modo Claro' : 'Modo Escuro' }}
+        </button>
+      </li>
+
+    <li class="nav-item">
       <a class="nav-link" href="/login" (click)="logout()">
-        <i class="bi bi-box-arrow-right me-2"></i> Logout
+        <i class="bi bi-box-arrow-right me-2"></i> LOGOUT
       </a>
     </li>
   </ul>

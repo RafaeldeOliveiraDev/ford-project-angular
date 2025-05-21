@@ -35,3 +35,13 @@ p, h1, h2, h3{
 .text-color{
   color: #00095B;
 }
+
+.blur-overlay {
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+  pointer-events: none; /* impede clique no fundo se quiser */
+}
+
+@media (max-width: 768px){
+  
+}

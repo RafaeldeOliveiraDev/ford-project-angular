@@ -9,10 +9,10 @@ import { CardComponent } from '../card/card.component';
 import { CarTableComponent } from '../car-table/car-table.component';
 import { HeaderComponent } from '../header/header.component';
 import { ContatoComponent } from '../contato/contato.component';
-import { AutenticacaoService } from '../../services/autenticacao/autenticacao.service';
 import { Router } from '@angular/router';
 import { CarComparativeComponent } from '../car-comparative/car-comparative.component';
 import { FooterComponent } from '../footer/footer.component';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -128,7 +128,7 @@ export class DashboardComponent implements OnInit {
   // para autenticar e verificar se o usuário está logado por meio do inject
   constructor(
     private router: Router,
-    private authService: AutenticacaoService
+    public themeService: ThemeService,
   ) {}
 
 

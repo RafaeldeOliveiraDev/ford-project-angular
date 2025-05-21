@@ -4,6 +4,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { ThemeService } from '../../services/theme.service';
 
 
 @Component({
@@ -21,7 +22,10 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class HomeComponent {
 
-  constructor(private router: Router){}
+  constructor(
+    private router: Router,
+    public themeService: ThemeService,
+  ){}
 
   logout(){
     sessionStorage.clear()

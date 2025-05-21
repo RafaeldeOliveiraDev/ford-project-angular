@@ -11,3 +11,21 @@ body {
     box-sizing: border-box;
     height: 100vh;
 }
+
+.dark-mode {
+  background-color: #121212 !important;
+  color: #f8f9fa !important;
+}
+
+.dark-mode .bg-light {
+  background-color: #1f1f1f !important;
+}
+
+.dark-mode .text-dark {
+  color: #f8f9fa !important;
+}
+
+.light-mode {
+  background-color: #ffffff;
+  color: #212529;
+}

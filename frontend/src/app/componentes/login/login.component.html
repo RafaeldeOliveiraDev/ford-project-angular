@@ -1,55 +1,44 @@
-<div class="container-fluid vh-100">
-  <div class="row h-100">
+<div class="login-container">
+  <div class="overlay"></div>
 
-    <!-- Coluna esquerda: imagem -->
-    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center bg-white">
-      <img src="/img/ranger.png"
-           class="img-fluid object-contain"
-           style="max-height: 90%; max-width: 90%;"
-           alt="Imagem da Ford Ranger" />
+  <div class="form-box">
+    <div class="text-center mb-4">
+      <img src="/img/ford.png" alt="Ford Logo" style="height: 60px;" />
     </div>
 
-    <!-- Coluna direita: ocupa tudo + centraliza form -->
-    <div style="background-color: #f6f6f6;" class="container-right col-md-6 p-0 ">
-      <div class="h-100 w-100 shadow d-flex flex-column justify-content-center p-5">
-        
-        <!-- Logo e título -->
-        <div class="text-center mb-4">
-          <img src="/img/ford.png" class="img-fluid" style="max-height: 70px;">
-          <h4 class="text-success mt-3">Boas-vindas</h4>
-        </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="d-grid gap-3">
 
-        <!-- Formulário -->
-        <form (ngSubmit)="login()" class="d-grid gap-3">
-         
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control" [(ngModel)]="usuario" name="usuario" placeholder="Digite seu usuário ou e-mail" required />
-          </div>
-
-          <div class="input-group">
-            <span class="input-group-text"><i class="bi bi-lock"></i></span>
-            <input type="password" class="form-control" [(ngModel)]="senha" name="senha" placeholder="Digite sua senha atual" required />
-          </div>
-
-          <div class="form-check form-switch d-flex justify-content-between align-items-center">
-            <label for="auto-login" class="form-check-label text-muted">Logar automaticamente</label>
-            <input id="auto-login" class="form-check-input" type="checkbox" />
-          </div>
-
-          <button class="btn btn-secondary w-100 " type="submit" 
-          [ngClass]="{
-            'btn-primary': usuario && senha,
-            'btn-secondary': !(usuario && senha)
-          }"
-          >
-          
-          Entrar
-          </button>
-        </form>
-
+      <div class="form-floating">
+        <input type="email" formControlName="usuario" class="form-control" id="email" formControlName="usuario" placeholder="Email" />
+        <label for="email">Digite seu usuário</label>
       </div>
-    </div>
 
+      <div class="form-floating">
+        <input type="password" formControlName="senha" class="form-control" id="senha" formControlName="senha" placeholder="Senha" />
+        <label for="senha">Digite sua senha</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="password" formControlName="confirmarSenha" class="form-control" id="confirmarSenha" formControlName="confirmarSenha" placeholder="Confirme sua senha" />
+        <label for="confirmarSenha">Confirme sua Senha</label>
+      </div>
+
+      <div *ngIf="loginForm.errors?.['senhasDiferentes']" class="text-danger text-center">
+  As senhas não coincidem.
+</div>
+
+
+      <div class="social-icons d-flex justify-content-center gap-3 mt-3">
+        <a href="www.linkedin.com/company/ford-brasil/"><button type="button" class="btn btn-outline-dark rounded-circle"><i class="bi bi-linkedin"> </i></button></a>
+        <a href="https://www.ford.com.br"><button type="button" class="btn btn-outline-dark rounded-circle"><i class="bi bi-google"></i></button></a> 
+        <a href="https://web.facebook.com/FordBrasil"> <button type="button" class="btn btn-outline-dark rounded-circle"><i class="bi bi-facebook"></i></button></a>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 mt-3 fw-bold">Continuar</button>
+
+      <div class="text-center mt-3 links">
+        Não tem uma conta?<a href="/cadastro"> Criar uma conta</a><br />
+      </div>
+    </form>
   </div>
 </div>

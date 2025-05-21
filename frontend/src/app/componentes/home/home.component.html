@@ -82,13 +82,13 @@
 </section>
 
 <!-- Seção "Escolha seu Ford" -->
-<section class="ford-choose-section py-5">
-  <div class="container text-center">
-    <h2 class="ford-section-title mb-4">Escolha um Ford para o seu estilo de vida</h2>
+<section class="ford-choose-section py-5" [ngClass]="themeService.isDarkMode() ? 'bg-dark text-light' : 'bg-light text-dark'" >
+  <div class="container text-center" >
+    <h2 class="ford-section-title mb-4 ">Escolha um Ford para o seu estilo de vida</h2>
     
     <div class="row g-4 mt-4">
       <!-- Veículo 1 -->
-      <div class="col-md-4">
+      <div class="col-md-4 ">
         <div class="ford-vehicle-card">
           <img src="/img/ranger-t1.png" alt="Ford Ranger" class="ford-vehicle-image">
           <h3 class="ford-vehicle-name">Ranger</h3>
@@ -160,20 +160,6 @@
 <app-sidenav></app-sidenav>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
-
-<!-- <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1200">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/img/mustang.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="/img/mustang.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="/img/mustang.png" class="d-block w-100" alt="...">
-    </div>
-  </div>
-</div> -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 

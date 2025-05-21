@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-contato',
@@ -53,5 +54,9 @@ export class ContatoComponent {
   //  função para validar o celular
   validarCelular(celular: string): boolean {
     return /^\d+$/.test(celular);
-  }
+ }
+
+ constructor(
+  public themeService: ThemeService,
+ ){}
 }

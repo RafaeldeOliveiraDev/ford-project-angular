@@ -1,4 +1,6 @@
-<div class="container-fluid bg-light" style="min-height: 100vh;">
+<div class="container-fluid bg-light" [class.blur.overlay]="mostrarContato" 
+    [ngClass]="themeService.isDarkMode() ? 'bg-dark text-light' : 'bg-light text-dark'"
+    style="min-height: 100vh;">
   <!-- Header fixo com margem de segurança -->
   <app-header class="sticky-top bg-white shadow-sm" style="height: 60px; z-index: 1000;"></app-header>
   
@@ -11,15 +13,18 @@
     <!-- Conteúdo Principal -->
     <main class="col p-4">
       <!-- Cabeçalho e Seletor -->
-      <div class="d-flex justify-content-between align-items-center mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-4"
+      [ngClass]="themeService.isDarkMode() ? 'bg-dark text-light' : 'bg-light text-dark'"
+      >
         <h1 class="h4 text-primary fw-bold mb-0">
           <i class="bi bi-car-front me-2"></i>VEÍCULOS
         </h1>
-        <h1 class="h4 text-primary fw-bold mb-0">
-          DASHBOARD DA FORD
-        </h1>
+        <!-- <h1 id="dashboard-text" class="h4 text-primary fw-bold mb-0">
+          DASHBOARD
+        </h1> -->
+        
         <div class="d-flex gap-3 align-items-center">
-          <!-- <p class="text-primary h4 fw-bold mb-0">Selecione o carro -></p> -->
+
         <select class="form-select form-select-sm w-auto" (change)="onChangeSelect($event)">
           @for(v of veiculos; track v.id) {
           <option value="{{ v.id }}">{{ v.vehicle }}</option>
@@ -29,31 +34,35 @@
       </div>
 
       <!-- Seção da Imagem do Veículo (POSIÇÃO CORRETA) -->
-      <div class="text-center mb-4 bg-white p-3 rounded shadow-sm">
+      <div class="text-center mb-4 p-3 rounded shadow-sm"
+      [ngClass]="themeService.isDarkMode() ? 'bg-dark text-light' : 'bg-light text-dark'"
+      >
         <img src="{{ veiculoSelecionado.img }}" 
              alt="{{ veiculoSelecionado.vehicle }}" 
              class="img-fluid" 
              style="max-height: 250px; object-fit: contain;">
-        <h2 class="h5 mt-2">{{ veiculoSelecionado.vehicle }}</h2>
+        <h2 class="h5 mt-2  ">{{ veiculoSelecionado.vehicle }}</h2>
       </div>
 
-      <!-- Cards de Métricas -->
-      <div class="mb-4 p-3 bg-white rounded shadow-sm">
+      <!-- Cards de Medidas -->
+      <div class="mb-4 p-3 rounded shadow-sm" 
+      [ngClass]="themeService.isDarkMode() ? 'bg-dark text-light' : 'bg-light text-dark'"
+      >
         <h2 class="h5 fw-bold mb-3">Disponíveis</h2>
         
         <div class="row g-2">
           <!-- Total de Vendas -->
           <div class="col-12 col-md-4">
             <div class="p-3 border rounded">
-              <h3 class="h6 text-muted mb-1">Total de vendas</h3>
+              <h3 class="h6 mb-1">Total de vendas</h3>
               <p class="h4 fw-bold mb-0">{{ veiculoSelecionado.volumetotal }} Unidades</p>
             </div>
           </div>
           
           <!-- Conectados -->
           <div class="col-12 col-md-4">
-            <div class="p-3 border rounded">
-              <h3 class="h6 text-muted mb-1">Conectados</h3>
+            <div class="p-3 border rounded" >
+              <h3 class="h6 mb-1">Conectados</h3>
               <p class="h4 fw-bold mb-0">{{ veiculoSelecionado.connected }} Unidades</p>
             </div>
           </div>
@@ -61,7 +70,7 @@
           <!-- Atualizações -->
           <div class="col-12 col-md-4">
             <div class="p-3 border rounded">
-              <h3 class="h6 text-muted mb-1">Update Software</h3>
+              <h3 class="h6 mb-1">Update Software</h3>
               <p class="h4 fw-bold mb-0">{{ veiculoSelecionado.softwareUpdates }} Unidades</p>
             </div>
           </div>
@@ -69,10 +78,13 @@
       </div>
 
       <!-- Busca por VIN -->
-      <div class="mb-4 p-3 bg-white rounded shadow-sm">
+      <div class="mb-4 p-3 rounded shadow-sm"
+      [ngClass]="themeService.isDarkMode() ? 'bg-dark text-light' : 'bg-light text-dark'"
+      >
         <h2 class="h5 fw-bold mb-3">Buscar por VIN</h2>
         <div class="input-group">
-          <input type="text" 
+          <input 
+                type="text" 
                  class="form-control" 
                  [formControl]="vinControl"
                  placeholder="Digite o código VIN">
@@ -86,7 +98,9 @@
       </div>
 
       <!-- Dados do Veículo -->
-      <div class="p-3 bg-white rounded shadow-sm">
+      <div class="p-3 rounded shadow-sm"
+      [ngClass]="themeService.isDarkMode() ? 'bg-dark text-light' : 'bg-light text-dark'"
+      >
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h2 class="h5 fw-bold mb-0">Dados do Veículo</h2>
           <button class="btn btn-primary ford-hero-btn" (click)="mostrarContato = true">

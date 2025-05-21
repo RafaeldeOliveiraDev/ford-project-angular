@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
+import { ThemeService } from '../../services/theme.service';
 
 
 @Component({
@@ -15,16 +16,24 @@ import { Router } from '@angular/router';
   styleUrl: './sidenav.component.css'
 })
 export class SidenavComponent {
+
   isOpen = false;
 
   toggle(){
       this.isOpen = !this.isOpen
   }
-  constructor(private router: Router){}
+  constructor(
+    private router: Router,
+    public themeService: ThemeService,
+  ){}
 
   logout() {
   localStorage.removeItem('usuarioLogado');
   this.router.navigate(['/']);
 }
+
+toggleTheme() {
+    this.themeService.toggleTheme();
+  }
   
 }

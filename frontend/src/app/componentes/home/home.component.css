@@ -69,7 +69,7 @@
 .ford-section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #2d2d2d;
+  color: #00095B;
   position: relative;
   display: inline-block;
 }
@@ -174,7 +174,16 @@
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 940px) {
+   .ford-hero-image {
+    height: 83vh;
+  } 
+
+  .ford-hero-image img {
+    height: 25vh;
+    width: 50vw;
+  }
+  
   .ford-hero-title {
     font-size: 2rem;
   }
@@ -189,4 +198,6 @@
     text-align: center;
     width: 90%;
   }
+
+   
 }

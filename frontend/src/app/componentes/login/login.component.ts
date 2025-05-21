@@ -1,47 +1,61 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticacaoService } from '../../services/autenticacao/autenticacao.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-
 export class LoginComponent {
-  usuario = '';
-  senha = '';
+  loginForm: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private authService: AutenticacaoService,
     private router: Router
-  ) {}
+  ) {
+    this.loginForm = this.fb.group(
+      {
+        usuario: ['', [Validators.required]],
+        senha: ['', [Validators.required]],
+        confirmarSenha: ['', [Validators.required]],
+      },
+      {
+        validators: this.senhasIguaisValidator
+      }
+    );
+  }
+
+  senhasIguaisValidator(group: FormGroup) {
+    const senha = group.get('senha')?.value;
+    const confirmar = group.get('confirmarSenha')?.value;
+    return senha === confirmar ? null : { senhasDiferentes: true };
+  }
 
   login() {
-    // Checa se os campos estão preenchidos
-    if (!this.usuario || !this.senha) {
-      alert('Preencha o usuário e a senha');
+    if (this.loginForm.invalid) {
+      if (this.loginForm.errors?.['senhasDiferentes']) {
+        alert('As senhas não coincidem.');
+      } else {
+        alert('Preencha todos os campos obrigatórios.');
+      }
       return;
     }
 
-    // Chama o serviço de autenticação
-    this.authService.autenticar(this.usuario, this.senha).subscribe({
-      next: (res) => {
-        
-        localStorage.setItem('usuarioLogado', 'true'); 
-        this.router.navigate(['/home']);          
+    const { usuario, senha } = this.loginForm.value;
 
+    this.authService.autenticar(usuario, senha).subscribe({
+      next: (res) => {
+        localStorage.setItem('usuarioLogado', 'true');
+        this.router.navigate(['/home']);
       },
       error: (err) => {
-       
-        // Mostra erro simples pro usuário
         alert('Usuário ou senha inválidos');
-
-        //  erro no console pra facilitar debug
         console.error('Erro no login:', err);
       }
     });
